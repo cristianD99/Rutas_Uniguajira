@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚌 Sistema de Rutas Universitarias</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <h1>🚌 Sistema de Rutas Universitarias</h1>
+        <p>Facilitando tu transporte hacia la universidad</p>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+        <section class="intro">
+            <img src="{% static 'img/estudiantes_ruta.png' %}" alt="Rutas universitarias" class="banner">
+            <p>
+                Bienvenido al sistema oficial de transporte universitario. Aquí puedes consultar las rutas disponibles,
+                realizar reservas y gestionar tus recorridos de manera fácil y rápida.
+            </p>
+            <a href="{% url 'reservar' %}" class="btn">🎫 Realizar una reserva</a>
+        </section>
+
+        <section class="acciones">
+            <h2>💡 ¿Qué puedes hacer aquí?</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>🧾 Reservar ruta</h3>
+                    <p>Elige la ruta que más te convenga y asegura tu cupo en segundos.</p>
+                </div>
+                <div class="card">
+                    <h3>🗺️ Consultar rutas</h3>
+                    <p>Visualiza los puntos de salida, destino y horarios disponibles.</p>
+                </div>
+                <div class="card">
+                    <h3>⚠️ Estado de reserva</h3>
+                    <p>Revisa si tu reserva está activa o cancelada en cualquier momento.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+        <p>© 2025 Universidad de La Guajira — Sistema de Rutas Universitarias</p>
+        <p>Desarrollado con ❤️ en Django</p>
+    </footer>
+</body>
+</html>

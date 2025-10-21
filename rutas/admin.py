@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Ruta
+from .models import Ruta, HorarioRuta  # ✅ Cambia Reserva por HorarioRuta
 
-@admin.register(Ruta)
-class RutaAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'origen', 'destino', 'horario')
-    search_fields = ('nombre', 'origen', 'destino')
+admin.site.register(Ruta)
+admin.site.register(HorarioRuta)
