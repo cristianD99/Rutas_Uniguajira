@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobante de Reserva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'img/comprobante.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .comprobante {
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+            width: 400px;
+            text-align: center; 
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 28px; 
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+
+        .btn-general {
+            position: absolute;
+            padding: 10px 50px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            color: #000;
+        }
+
+        .inicio-btn {
+            top: 20px;
+            left: 25px; 
+            background-color: #3ef2e9;
+        }
+        .inicio-btn:hover {
+            background-color: #40dc5c;
+            transform: scale(1.05);
+        }
+
+        .volver-reserva-btn {
+            top: 20px;          
+            left: 200px;        
+            background-color: #ff9200;
+        }
+        .volver-reserva-btn:hover {
+            background-color: #ffb347;
+            transform: scale(1.05);
+        }
+
+        .volver-btn {
+            top: 70px;          
+            left: 25px;        
+            background-color: #e0e2ed;
+        }
+        .volver-btn:hover {
+            background-color: #3ed8f7;
+            transform: scale(1.05);
+        }
+
+        .admin-btn {
+            top: 20px;         
+            right: 25px;       
+            background-color: #ffcc00;
+        }
+        .admin-btn:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'index' %}" class="btn-general inicio-btn">Inicio</a>
+    <a href="{% url 'login_usuario' %}" class="btn-general volver-reserva-btn">Volver a Reservar</a>
+    <a href="{% url 'login_admin' %}" class="btn-general admin-btn">Administrador 🕵️‍♂️</a>
+
+    
+    <div class="comprobante">
+        <h1>✅ Comprobante de Reserva</h1>
+        <p><span class="label">Nombre del usuario:</span> {{ reserva.nombre_usuario }}</p>
+        <p><span class="label">Ruta:</span> {{ reserva.ruta.nombre }}</p>
+        <p><span class="label">Parada:</span> {{ reserva.parada.nombre }}</p>
+        <p><span class="label">Horario:</span> {{ reserva.horario }}</p>
+        <p><span class="label">Puesto asignado:</span> {{ reserva.puesto }}</p>
+    </div>
+</body>
+</html>

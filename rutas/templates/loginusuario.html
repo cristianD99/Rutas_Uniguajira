@@ -1,0 +1,72 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Usuario</title>
+
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'img/fondo.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .login-box {
+            background: rgba(0,0,0,0.7);
+            padding: 30px;
+            border-radius: 12px;
+            color: white;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .mensaje {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservacion">
+        <h1>Iniciar sesión</h1>
+        {% if mensaje %}
+            <p class="mensaje">{{ mensaje }}</p>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="email" name="correo" placeholder="Correo" required>
+            <input type="password" name="contraseña" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+</body>
+</html>

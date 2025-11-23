@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚌 Sistema de Rutas Universitarias</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'img/fondo.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            text-align: center;
+            color: white; 
+        }
+
+        
+        .barra-superior {
+            background-color: #0056ff;
+            padding: 25px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+
+        
+        .admin-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4b4b4b, #222);
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(135deg, #666, #333);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+        }
+
+      .recuadro-img {
+    background: #ffffffdd;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 5px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: visible;
+}
+
+.recuadro-img img {
+    display: block;
+    margin: 0.4cm;
+    border-radius: 2px;
+}
+
+
+        .baner {
+            display: block;
+            max-width: 95%;
+            border-radius: 10px;
+        }
+
+        .intro, .acciones {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 15px;
+            background: #28a745; 
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1e7e34;
+            transform: scale(1.05);
+        }
+
+        
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .card {
+            flex: 1 1 200px;
+            max-width: 250px;
+            background: #ffffffcc;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            color: black;
+        }
+
+        footer {
+            margin-top: 38px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+  
+    <header class="header barra-superior">
+        <h1>🚌 Sistema de Rutas Universitarias</h1>
+        <p>Facilitando tu transporte hacia la universidad</p>
+        <a href="{% url 'login_admin' %}" class="admin-btn">Administrador🕵️‍♂️</a>
+    </header>
+
+    <main class="main-container">
+
+        <section class="intro">
+
+          
+            <div class="recuadro-img">
+                <div class="d-flex justify-content-center gap-3"></div>
+                <img src="{% static 'img/estudiantes_ruta copy.png' %}" 
+                     alt="Rutas universitarias" class="baner">
+            </div> 
+
+            <p>
+                Bienvenido al sistema oficial de transporte universitario. Aquí puedes consultar las rutas disponibles,
+                realizar reservas y gestionar tus recorridos de manera fácil y rápida.
+            </p>
+
+         
+            <a href="{% url 'reservar' %}" class="btn">🎫 Realizar una reserva</a>
+
+        </section>
+
+        <section class="acciones">
+            <h2>💡 ¿Qué puedes hacer aquí?</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>🧾 Reservar ruta</h3>
+                    <p>Elige la ruta que más te convenga y asegura tu cupo en segundos.</p>
+                </div>
+
+                <div class="card">
+                    <h3>🗺️ Consultar rutas</h3>
+                    <p>Visualiza los puntos de salida, destino y horarios disponibles.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Universidad de La Guajira — Sistema de Rutas Universitarias</p>
+        <p>Desarrollado con ❤️ en Django</p>
+    </footer>
+
+</body>
+</html>

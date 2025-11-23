@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Puesto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'img/reserva.jpg' %}") no-repeat center center fixed;
+            background-size: cover; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            width: 400px;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .puesto {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e7f3fe;
+            border-left: 5px solid #2196F3;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .inicio-btn, .volver-btn, .admin-btn, .volver-reserva-btn {
+            position: absolute;
+            padding: 10px 50px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            color: #000;
+        }
+
+        .inicio-btn {
+            top: 20px;
+            left: 25px; 
+            background-color: #3ef2e9;
+        }
+        .inicio-btn:hover {
+            background-color: #40dc5c;
+            transform: scale(1.05);
+        }
+
+        .volver-btn {
+            top: 20px;          
+            left: 200px;        
+            background-color: #e9200a;
+        }
+        .volver-btn:hover {
+            background-color: #ffeb11;
+            transform: scale(1.05);
+        }
+
+        .admin-btn {
+            top: 20px;         
+            right: 25px;       
+            background-color: #ffcc00;
+        }
+        .admin-btn:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+ 
+
+
+    </style>
+</head>
+<body>
+
+ 
+    <a href="{% url 'index' %}" class="inicio-btn">Inicio</a>
+    <a href="javascript:history.back()" class="volver-btn">Volver</a>
+    <a href="{% url 'login_admin' %}" class="admin-btn">Administrador 🕵️‍♂️</a>
+  
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h1>Reservar Puesto</h1>
+
+        {% if reserva %}
+            <div class="puesto">
+                ✅ ¡Tu puesto ha sido asignado!<br>
+                <strong>Nombre:</strong> {{ reserva.nombre_usuario }}<br>
+                <strong>Ruta:</strong> {{ reserva.ruta }}<br>
+                <strong>Parada:</strong> {{ reserva.parada }}<br>
+                <strong>Horario:</strong> {{ reserva.horario }}<br>
+                <strong>Puesto asignado:</strong> {{ reserva.puesto }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.nombre_usuario.label_tag }} 
+            {{ form.nombre_usuario }}
+
+            {{ form.ruta.label_tag }} 
+            {{ form.ruta }}
+
+            {{ form.parada.label_tag }} 
+            {{ form.parada }}
+
+            {{ form.horario.label_tag }} 
+            {{ form.horario }}
+
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $("#id_ruta").change(function () {
+            var rutaId = $(this).val();
+            $.ajax({
+                url: "{% url 'ajax_cargar_paradas' %}",
+                data: {'ruta': rutaId},
+                success: function (data) {
+                    $("#id_parada").html('');
+                    $.each(data, function (index, item) {
+                        $("#id_parada").append('<option value="' + item.id + '">' + item.nombre + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
